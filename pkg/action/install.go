@@ -486,7 +486,7 @@ func (c *Configuration) renderResources(ch *chart.Chart, values chartutil.Values
 		if outputDir == "" {
 			fmt.Fprintf(b, "---\n# Source: %s\n%s\n", m.Name, m.Content)
 		} else {
-			err = writeToFile(outputDir, m.Name, m.Content, fileWritten[m.Name])
+			err = WriteToFile(outputDir, m.Name, m.Content, fileWritten[m.Name])
 			if err != nil {
 				return hs, b, "", err
 			}
@@ -498,7 +498,7 @@ func (c *Configuration) renderResources(ch *chart.Chart, values chartutil.Values
 }
 
 // write the <data> to <output-dir>/<name>. <append> controls if the file is created or content will be appended
-func writeToFile(outputDir string, name string, data string, append bool) error {
+func WriteToFile(outputDir string, name string, data string, append bool) error {
 	outfileName := strings.Join([]string{outputDir, name}, string(filepath.Separator))
 
 	err := ensureDirectoryForFile(outfileName)
